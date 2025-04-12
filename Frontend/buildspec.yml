@@ -1,0 +1,39 @@
+version: 0.2
+ 
+phases:
+
+  pre_build:
+
+    commands:
+
+      - echo Logging in to Amazon ECR...
+
+      - aws ecr get-login-password --region ap-northeast-3 | docker login --username AWS --password-stdin 124355663661.dkr.ecr.ap-northeast-3.amazonaws.com
+
+  build:
+
+    commands:
+
+      - echo Building Frontend Docker image...
+
+      - docker build -t g1-repo1-frontend -f Frontend/Dockerfile .
+
+      - docker tag g1-repo1-frontend:latest 124355663661.dkr.ecr.ap-northeast-3.amazonaws.com/g1-repo1:frontend
+
+  post_build:
+
+    commands:
+
+      - echo Pushing Frontend Docker image to ECR...
+
+      - docker push 124355663661.dkr.ecr.ap-northeast-3.amazonaws.com/g1-repo1:frontend
+
+      - echo Writing image definitions...
+
+      - printf '[{"name":"FrontEnd","imageUri":"124355663661.dkr.ecr.ap-northeast-3.amazonaws.com/g1-repo1:frontend"}]' > imagedefinitions.json
+
+artifacts:
+
+  files: imagedefinitions.json
+
+ 
