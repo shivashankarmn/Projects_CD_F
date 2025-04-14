@@ -35,7 +35,7 @@ function App() {
             </main>
             <footer className="bg-success text-white text-center py-3 mt-auto">
               <div className="container">
-                <p className="mb-0">© 2025 E waste Management. All rights reserved.</p>
+                <p className="mb-0">© 2025 Smart waste Management. All rights reserved.</p>
                 <p className="mb-0">
                   <a href="/privacy-policy" className="text-white text-decoration-none">Privacy Policy</a> |
                   <a href="/terms" className="text-white text-decoration-none ms-2">Terms of Service</a>
